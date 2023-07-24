@@ -1,6 +1,6 @@
-import {gql, useMutation} from '@apollo/client';
+import { gql, useMutation } from '@apollo/client';
 
-const Login = gql`
+const LOGIN = gql`
   mutation login($user: SigninUserInput!) {
     login(user: $user) {
       id
@@ -10,7 +10,7 @@ const Login = gql`
   }
 `;
 
-const CreateMessage = gql`
+const CREATE_MESSAGE = gql`
   mutation createMessage($message: CreateMessageInput!) {
     createMessage(message: $message) {
       id
@@ -19,4 +19,4 @@ const CreateMessage = gql`
   }
 `;
 
-export {Login, CreateMessage};
+export { LOGIN, CREATE_MESSAGE };

@@ -1,18 +1,18 @@
-import {useLazyQuery, useMutation} from '@apollo/client';
-import React, {useEffect, useState} from 'react';
-import {Button, StyleSheet, TouchableOpacity} from 'react-native';
-import {ActivityIndicator, TextInput} from 'react-native';
-import {KeyboardAvoidingView, Text, View} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {Login} from '../graphql';
+import { useLazyQuery, useMutation } from '@apollo/client';
+import React, { useEffect, useState } from 'react';
+import { Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, TextInput } from 'react-native';
+import { KeyboardAvoidingView, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { LOGIN } from '../graphql';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const LoginScreen = props => {
+const LoginScreen = (props) => {
   const [view, setView] = useState('login');
   const [email, setEmail] = useState('Tabitha7@yahoo.com');
   const [password, setPassword] = useState('HbXNFGAfJ8cFYg2');
   const [username, setUserName] = useState('Arnaldo69');
-  const [login, {data, loading, error}] = useMutation(Login);
+  const [login, { data, loading, error }] = useMutation(LOGIN);
 
   const switchView = () => {
     setView(view === 'signup' ? 'login' : 'signup');
@@ -32,7 +32,7 @@ const LoginScreen = props => {
     }
   };
 
-  const handleLoginCreds = async login => {
+  const handleLoginCreds = async (login) => {
     await AsyncStorage.setItem('loginKey', JSON.stringify(login)).then(() => {
       props?.navigation?.navigate('MessageList');
     });
@@ -46,7 +46,7 @@ const LoginScreen = props => {
   }, [data?.login]);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAvoidingView behavior={'padding'} style={styles.container}>
         {loading && (
           <View style={styles.loadingContainer}>
@@ -55,20 +55,20 @@ const LoginScreen = props => {
         )}
         <View style={styles.inputContainer}>
           <TextInput
-            onChangeText={emailId => setEmail(emailId)}
+            onChangeText={(emailId) => setEmail(emailId)}
             placeholder={'Email'}
             style={styles.input}
             value={email}
           />
           <TextInput
-            onChangeText={pwd => setPassword(pwd)}
+            onChangeText={(pwd) => setPassword(pwd)}
             placeholder={'Password'}
             // secureTextEntry
             style={styles.input}
             value={password}
           />
           <TextInput
-            onChangeText={usrName => setPassword(usrName)}
+            onChangeText={(usrName) => setPassword(usrName)}
             placeholder={'Username'}
             style={styles.input}
             value={username}
